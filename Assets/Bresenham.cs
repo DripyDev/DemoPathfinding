@@ -79,17 +79,17 @@ public class Bresenham : MonoBehaviour {
         List<Cubo> closedList = new List<Cubo>();
         Cubo inicio = Encontrar(new Vector3(xI,1,yI));
         Cubo final = Encontrar(new Vector3(xF,1,yF));
+        
         int indiceInicio = Indice(inicio);
         int indiceFinal = Indice(final);
         inicio.g=0;
         inicio.h=CalcularH(mundo[indiceInicio], mundo[indiceFinal]);
         inicio.f = inicio.h+inicio.g;
         mundo[indiceInicio] = inicio;
-        print("Inicio: g: " + mundo[indiceInicio].g + " h: " + mundo[indiceInicio].h + " f: " + mundo[indiceInicio].f);
 
         
         openList.Add(mundo[indiceInicio]);
-        Cubo nodoActual = inicio;
+        Cubo nodoActual = mundo[indiceInicio];
         while(openList.Count > 0){
             //print("Nodo actual: " + nodoActual.centro);
             //print("openlist.Count: " + openList.Count);
@@ -104,7 +104,7 @@ public class Bresenham : MonoBehaviour {
             List<Cubo> vecinos = NodosVecinos(mundo[indiceActual]);
             //print("Numero vecinos: " + vecinos.Count);
             foreach (Cubo v in vecinos){
-                //print("Analizando vecinos");
+                print("Analizando vecinos");
                 var aux = v;
                 int indiceAux = Indice(aux);
                 if(closedList.Contains(mundo[indiceAux])){
@@ -118,14 +118,16 @@ public class Bresenham : MonoBehaviour {
                     closedList.Add(mundo[indiceAux]);
                     continue;
                 }
-                int tentativeG = nodoActual.g + CalcularH(mundo[indiceActual], mundo[indiceAux]);
+                int tentativeG = mundo[indiceActual].g + CalcularH(mundo[indiceActual], mundo[indiceAux]);
                 //print("TentativeG: " + tentativeG);
                 //print("Valor g del vecino: " + aux.g);
+                //mundo[indiceActual].prefab.material.color = Color.green;
                 if(tentativeG < mundo[indiceAux].g){
                     aux.cameFrom = indiceActual;
                     aux.g = tentativeG;
                     aux.h = CalcularH(mundo[indiceAux], mundo[indiceFinal]);
-                    aux.f = mundo[indiceAux].g+mundo[indiceAux].h;
+                    //aux.f = mundo[indiceAux].g+mundo[indiceAux].h;
+                    aux.f = aux.g+ aux.h;
                     
                     mundo[indiceAux] = aux;
                     if(!openList.Contains(mundo[indiceAux])){
@@ -173,11 +175,14 @@ public class Bresenham : MonoBehaviour {
             print("Añadimos uno en el path");
             print("CameFrom: " + actual.cameFrom);
             res.Add(mundo[actual.cameFrom]);
+            mundo[actual.cameFrom].prefab.material.color = Color.red;
             actual = mundo[actual.cameFrom];
             //var aux = mundo[actual.cameFrom];
             //aux.prefab.material.color = Color.green;
             //mundo[actual.cameFrom] = aux;
         }
+        if(actual.cameFrom == -1)
+            actual.prefab.material.color = Color.green;
         return DarVuelta(res);
     }
 
@@ -190,6 +195,10 @@ public class Bresenham : MonoBehaviour {
     }
 
     Cubo NodoMenorF(List<Cubo> lista){
+        if(lista.Count <= 0){
+            print("Lista vacia en NodoMenorF");
+            return new Cubo(new Vector3(-1,-1,-1), -1, prefab);
+        }
         Cubo menor = lista[0];
         foreach (var n in lista){
             if(n.f < menor.f)
@@ -283,6 +292,19 @@ public class Bresenham : MonoBehaviour {
                 c.prefab.material.color = Color.magenta;
         }
     }
+    void LimpiarValores(){
+        for (int i = 0; i < mundo.Count; i++) {
+            //print("Limpiamos valores del cubo de indice: " + i);
+            //print("g: " + mundo[i].g + " h: " + mundo[i].h + " f: " + mundo[i].f + " cameFrom: " + mundo[i].cameFrom);
+            var aux = mundo[i];
+            aux.g = int.MaxValue;
+            aux.h=0;
+            aux.f=aux.g+aux.h;
+            aux.cameFrom = -1;
+            mundo[i] = aux;
+            //print("g: " + mundo[i].g + " h: " + mundo[i].h + " f: " + mundo[i].f + " cameFrom: " + mundo[i].cameFrom);
+        }
+    }
 
     public void CambioCaminable(Vector3 pos){
         int indice = Indice(Encontrar(pos));
@@ -320,19 +342,7 @@ public class Bresenham : MonoBehaviour {
             print("Path: " + a.centro);
         }*/
     }
-    void LimpiarValores(){
-        for (int i = 0; i < mundo.Count; i++) {
-            print("Limpiamos valores del cubo de indice: " + i);
-            print("g: " + mundo[i].g + " h: " + mundo[i].h + " f: " + mundo[i].f + " cameFrom: " + mundo[i].cameFrom);
-            var aux = mundo[i];
-            aux.g = int.MaxValue;
-            aux.h=0;
-            aux.f=aux.g+aux.h;
-            aux.cameFrom = -1;
-            mundo[i] = aux;
-            print("g: " + mundo[i].g + " h: " + mundo[i].h + " f: " + mundo[i].f + " cameFrom: " + mundo[i].cameFrom);
-        }
-    }
+    
     public List<(int,int)> BresenhamErrorInt(int x, int y, int x1, int y1){
         List<(int,int)> pathAux = new List<(int,int)>();
         

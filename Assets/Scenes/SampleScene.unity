@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a228b8c5e752a4eb273917e7f95bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bres: 1
+  bres: 0
   numeroCubos: 49
   dimensionesCubo: 7
   origen: {x: 1, y: 1, z: 1}
