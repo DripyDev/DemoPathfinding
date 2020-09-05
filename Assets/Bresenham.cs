@@ -97,7 +97,7 @@ public class Bresenham : MonoBehaviour {
             int indiceActual = Indice(nodoActual);
             if(nodoActual.centro == final.centro){
                 print("Hemos llegado al final");
-                return CalcularPath(mundo[indiceFinal]);
+                return CalcularPath(mundo[indiceActual]);
             }
             openList.Remove(mundo[indiceActual]);
             closedList.Add(mundo[indiceActual]);
@@ -111,13 +111,15 @@ public class Bresenham : MonoBehaviour {
                     //print("closedList contiene el vecino, lo saltamos");
                     continue;
                 }
+                
                 if(!mundo[indiceAux].caminable){
                     print("Vecino no caminable");
-                    if(openList.Contains(mundo[indiceAux]))
-                        openList.Remove(mundo[indiceAux]);
+                    //if(openList.Contains(mundo[indiceAux]))
+                    //    openList.Remove(mundo[indiceAux]);
                     closedList.Add(mundo[indiceAux]);
                     continue;
                 }
+
                 int tentativeG = mundo[indiceActual].g + CalcularH(mundo[indiceActual], mundo[indiceAux]);
                 //print("TentativeG: " + tentativeG);
                 //print("Valor g del vecino: " + aux.g);
