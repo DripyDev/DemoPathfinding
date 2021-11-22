@@ -21,8 +21,9 @@ O la [serie de vídeos](https://www.youtube.com/playlist?list=PLFt_AvWsXl0cq5Umv
 
 ### Funcionamiento
 El proyecto está compuesto de dos partes principales, la cámara y el pathfinding. Los controles de la cámara són:
-  -w,a,s,d / up,dowa,left,rigth: Movimiento de la cámara.
-  -Control / espacio: Control es para reducir la altura y espacio para aumentarla.
-  -Shift: Cambia el modo de movimiento de la cámara. De forma predefinida avanza en la dirección a la que miramos, al cambiar de modo avanzamos (o retrocedemos...) de manera global sin tener en cuenta la dirección.
+
+- **w,a,s,d / up,dowa,left,rigth:** Movimiento de la cámara.
+- **Control / espacio:** Control es para reducir la altura y espacio para aumentarla.
+- **Shift:** Cambia el modo de movimiento de la cámara. De forma predefinida avanza en la dirección a la que miramos, al cambiar de modo avanzamos (o retrocedemos...) de manera global sin tener en cuenta la dirección.
   
 Para ver los resultados de los algoritmos, de manera predefinida se usa Bresenham, basta con hacer click izquierdo en uno de los cubos para determinar el origen y click derecho para determinar el destino. Automaticamente devolverá el camino entre los dos coloreando de amarillo la ruta. Si desde el inspector de Unity, en el GameObject "RegionManager" cambiamos el booleano 'bresen' usará A* para determinar la ruta. Al igual que antes, con marcar origen y destino devolverá el camino pero en rojo. Si hacemos click con el botón de la rueda del ratón en un cubo, se coloreará de gris y se considerará no caminable. Bresenham lo ignorará pero A* evitará esos bloques.
