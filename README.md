@@ -8,14 +8,16 @@ Este es técnicamente un algoritmo para dibujar líneas rectas entre dos puntos 
 
 En la siguiente imagen vemos la recta generada desde el origen (cubo verde) hasta el destino (el último cubo de la recta) a través del algoritmo de Bresenham.
 
-![Recta Bresenham]()
+![Recta Bresenham](https://user-images.githubusercontent.com/61519721/142856131-2e66dd2a-638d-4902-bc96-527222fb21fb.PNG)
 
 ## A*
 Similar en cierto sentido a otros algoritmos como **Dijkstra**, **Bellman Ford** o **Floyd Warshall**, **A*** o *A Star*, este algoritmo de pathfinding si que tiene en cuenta casillas no caminables e incluso pesos. Para entenderlo en mayor profundidad recomiendo los siguientes enlaces:
 + https://www.geeksforgeeks.org/a-search-algorithm/
 + https://www.simplilearn.com/tutorials/artificial-intelligence-tutorial/a-star-algorithm#how_to_implement_the_a_algorithm_in_python
 
-O la [serie de vídeos](https://www.youtube.com/playlist?list=PLFt_AvWsXl0cq5Umv3pMC9SPnKjfp9eGW) de Sebastian Lague donde lo explica en mucha profundidad y de manera sencilla y visual. La siguiente imagen muestra como con A* se pueden crear rutas desde un origen (casilla verde) a un destino (casilla amarilla) evitando obstáculos intransitables (casillas grises).
+O la [serie de vídeos](https://www.youtube.com/playlist?list=PLFt_AvWsXl0cq5Umv3pMC9SPnKjfp9eGW) de Sebastian Lague donde lo explica en mucha profundidad y de manera sencilla y visual. La siguiente imagen muestra como con A* se pueden crear rutas (casillas rojas) desde un origen (casilla verde) a un destino (casilla amarilla) evitando obstáculos intransitables (casillas grises).
+
+![AStar2](https://user-images.githubusercontent.com/61519721/142856133-38ff72ac-4c16-4dce-ba46-6c1b16fa1bfb.PNG)
 
 ### Funcionamiento
 El proyecto está compuesto de dos partes principales, la cámara y el pathfinding. Los controles de la cámara són:
