@@ -2,7 +2,7 @@
 Esta es una pequeña demo para experimentar sobre algunos algoritmos de pathfinding, en concreto el de Bresenham y A*. Estos algoritmos van a ser implementados bajo el supuesto de un mundo formado por casillas cuadradas todas con el mismo peso, pero algunas de estas podrán ser obstáculos, intransitables.
 
 ## Bresenham
-Este es técnicamente un algoritmo para dibujar líneas rectas entre dos puntos A y B de manera eficiente, pero como el camino mas corto entre dos puntos en un mundo bidimensional es la línea recta, no es útil. Hay que ser conscientes de que no tiene en cuenta posibles obstáculos o diferentes pesos. Se puede implementar de diferentes maneras, ya sea a través del cálculo de la pendiente o a través del cálculo del error. La segunda forma es la implementada. Para entender en mayor profundidad el algoritmo recomiendo los siguientes enlaces:
+Este es técnicamente un algoritmo para dibujar líneas rectas entre dos puntos A y B de manera eficiente, pero como el camino mas corto entre dos puntos en un mundo bidimensional es la línea recta, nos es útil. Hay que ser conscientes de que no tiene en cuenta posibles obstáculos o diferentes pesos. Se puede implementar de diferentes maneras, ya sea a través del cálculo de la pendiente o a través del cálculo del error. La segunda forma es la implementada. Para entender en mayor profundidad el algoritmo recomiendo los siguientes enlaces:
 + https://www.javatpoint.com/computer-graphics-bresenhams-line-algorithm
 + https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/
 
